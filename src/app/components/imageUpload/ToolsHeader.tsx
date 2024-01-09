@@ -1,6 +1,4 @@
 import React from "react";
-import download from "downloadjs";
-import html2canvas from "html2canvas";
 import {
   TbTextSize,
   TbDownload,
@@ -12,7 +10,7 @@ import {
   TbBan,
   TbColorPicker,
 } from "react-icons/tb";
-import { getFilterBeforeDownload } from "@/app/helpers/helpers";
+import domtoimage from "dom-to-image";
 
 interface ToolsHeaderProps {
   showTextTools: boolean;
@@ -25,71 +23,30 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   showTextTools,
   setShowTextTools,
   setFilter,
-  filter,
 }) => {
-  const applyFilterAndDownload = async () => {
-    const editedImage: any = document.getElementById("editedImage");
-    console.log("EditedImage", editedImage);
+  const applyFilterAndDownload = () => {
+    const divToConvert: any = document.getElementById("editedImageDiv");
 
-    const canvas = await html2canvas(editedImage);
-    console.log("canvas", canvas);
+    // Use dom-to-image to capture the div content as an image
+    domtoimage
+      .toPng(divToConvert)
+      .then(function (dataUrl: any) {
+        // Create a download link for the image
+        const downloadLink = document.createElement("a");
+        downloadLink.href = dataUrl;
+        downloadLink.download = "edited_image.png";
 
-    const dataURL = canvas.toDataURL("image/png");
-
-    if (dataURL) {
-      download(dataURL, "download.png", "image/png");
-    } else {
-      console.error("Failed to generate Data URL");
-    }
-
-    const newImage = new Image();
-    console.log("newImage", newImage);
-    newImage.crossOrigin = "anonymous";
-    newImage.onload = async () => {
-      const canvas = document.createElement("canvas");
-      const ctx: any = canvas.getContext("2d");
-      console.log("ctx", ctx);
-      canvas.width = newImage.width;
-      canvas.height = newImage.height;
-
-      const filteredStyle = getFilterBeforeDownload(filter);
-      console.log("filteredStyle", filteredStyle);
-      ctx.filter = filteredStyle;
-      console.log("ctx.filter", ctx.filter);
-      ctx.drawImage(newImage, 0, 0);
-
-      const dataURL = canvas.toDataURL("image/png");
-      download(dataURL, "filtered_image.png", "image/png");
-    };
-
-    newImage.src = editedImage.src;
+        // Trigger the download
+        downloadLink.click();
+      })
+      .catch(function (error: any) {
+        // Handle errors if any
+        console.error("Error capturing image:", error);
+      });
   };
 
-  // const handleDownload = async () => {
-  //   setShowTextTools(false);
-  //   try {
-  //     const editedImageElement = document.getElementById("editedImage");
-
-  //     if (!editedImageElement) {
-  //       console.error("Edited image element not found");
-  //       return;
-  //     }
-
-  //     const canvas = await html2canvas(editedImageElement);
-  //     const dataURL = canvas.toDataURL("image/png");
-
-  //     if (dataURL) {
-  //       download(dataURL, "download.png", "image/png");
-  //     } else {
-  //       console.error("Failed to generate Data URL");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error downloading image:", error);
-  //   }
-  // };
-
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-2 min-w-[120px] bg-[#f9fafb]">
+    <div className="flex flex-col items-center justify-center h-screen space-y-2 min-w-[120px] bg-[#fff8f6]">
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => setShowTextTools(!showTextTools)}
@@ -177,6 +134,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         // onClick={() => (filter ? applyFilterAndDownload() : handleDownload())}
         onClick={() => applyFilterAndDownload()}
         // onClick={() => handleDownload()}
+        // onClick={() => htmlDownload()}
       >
         <TbDownload size={40} color="black" className="icon p-2" />
         <div className="text-black text-[10px]">Download Image</div>

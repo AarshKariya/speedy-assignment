@@ -7,9 +7,9 @@ interface TextToolsAndEditorProps {
 }
 
 const TextToolsAndEditor: React.FC<TextToolsAndEditorProps> = ({ show }) => {
-  const [text, setText] = useState<string>("");
   const [textColor, setTextColor] = useState<string>("#000000");
   const [fontSize, setFontSize] = useState<number>(16);
+  const [text, setText] = useState<string>("");
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setFontSize(parseInt(e.target.value, 10));

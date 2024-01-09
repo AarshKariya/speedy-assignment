@@ -14,7 +14,7 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
   const [filter, setFilter] = useState<string | undefined>();
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-[#f9fafb]">
       <ToolsHeader
         showTextTools={showTextTools}
         setShowTextTools={setShowTextTools}
@@ -22,19 +22,16 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
         filter={filter}
       />
       {selectedImage && (
-        <div
-          className="flex w-full max-w-screen-lg p-1 rounded-lg inset-0"
-          id="editedImageDiv"
-        >
-          <TextToolsAndEditor show={showTextTools} />
-          <img
-            src={selectedImage.imageUrl}
-            alt="Selected"
-            className={`w-full max-h-96 object-contain m-auto ml-[300px] ${getFilter(
-              filter
-            )}`}
-            id={"editedImage"}
-          />
+        <div className="flex w-full h-full max-w-screen-lg p-1 rounded-lg inset-0">
+          <div id="editedImageDiv">
+            <TextToolsAndEditor show={showTextTools} />
+            <img
+              src={selectedImage.imageUrl}
+              alt="Selected"
+              className={`w-full max-h-96 ${getFilter(filter)}`}
+              id={"editedImage"}
+            />
+          </div>
         </div>
       )}
     </div>
