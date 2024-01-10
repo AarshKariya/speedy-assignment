@@ -58,7 +58,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-1 min-w-[120px] bg-[#fff8f6] overflow-auto">
+    <div className="flex flex-col items-center h-full space-y-1 min-w-[120px] bg-[#fff8f6] overflow-auto py-4">
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => setShowTextTools(!showTextTools)}

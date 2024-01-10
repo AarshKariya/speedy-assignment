@@ -16,7 +16,7 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
   const [filter, setFilter] = useState<string | undefined>();
 
   return (
-    <div className="flex min-h-screen bg-[#f9fafb]">
+    <div className="flex h-screen bg-[#f9fafb]">
       <ToolsHeader
         showTextTools={showTextTools}
         setShowTextTools={setShowTextTools}
