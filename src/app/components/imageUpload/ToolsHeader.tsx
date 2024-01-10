@@ -12,12 +12,12 @@ import {
   TbExchange,
 } from "react-icons/tb";
 import domtoimage from "dom-to-image";
-
 interface ToolsHeaderProps {
   showTextTools: boolean;
   setShowTextTools: React.Dispatch<React.SetStateAction<boolean>>;
   toggleFilter: (filterName: string) => void;
   handleImageChange: any;
+  currentFilterId: string;
 }
 
 const ToolsHeader: React.FC<ToolsHeaderProps> = ({
@@ -25,6 +25,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   setShowTextTools,
   handleImageChange,
   toggleFilter,
+  currentFilterId,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -72,7 +73,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Add Text</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "light-theme" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("light-theme");
         }}
@@ -81,7 +84,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Brighten Image</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "dark-theme" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("dark-theme");
         }}
@@ -90,7 +95,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Invert Colors</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "saturate" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("saturate");
         }}
@@ -99,7 +106,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Saturate</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "dark-grayscale" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("dark-grayscale");
         }}
@@ -108,7 +117,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Grayscale Filter</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "dark-blur" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("dark-blur");
         }}
@@ -117,7 +128,9 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Blur Effect</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "light-sepia" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("light-sepia");
         }}
@@ -126,13 +139,15 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         <div className="text-black text-[10px]">Sepia Filter</div>
       </div>
       <div
-        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        className={`icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer ${
+          currentFilterId === "clearAll" ? "bg-[#fe5829]" : ""
+        }`}
         onClick={() => {
           toggleFilter("clearAll");
         }}
       >
         <TbBan size={40} color="black" className="icon p-2" />
-        <div className="text-black text-[10px]">Remove Filter</div>
+        <div className="text-black text-[10px]">Reset Filter</div>
       </div>
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
