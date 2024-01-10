@@ -5,10 +5,12 @@ import { getFilter } from "@/app/helpers/helpers";
 
 interface ImageEditorProps {
   selectedImage: { file: File; imageUrl: string } | null;
+  handleImageChange: any;
 }
 
 const ImageEditor: FunctionComponent<ImageEditorProps> = ({
   selectedImage,
+  handleImageChange,
 }) => {
   const [showTextTools, setShowTextTools] = useState<boolean>(false);
   const [filter, setFilter] = useState<string | undefined>();
@@ -20,6 +22,7 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
         setShowTextTools={setShowTextTools}
         setFilter={setFilter}
         filter={filter}
+        handleImageChange={handleImageChange}
       />
       {selectedImage && (
         <div

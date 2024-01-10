@@ -41,7 +41,10 @@ const ImageUploader = () => {
           </label>
         </div>
       ) : (
-        <ImageEditor selectedImage={selectedImage} />
+        <ImageEditor
+          selectedImage={selectedImage}
+          handleImageChange={handleImageChange}
+        />
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   TbTextSize,
   TbDownload,
@@ -9,6 +9,7 @@ import {
   TbBlur,
   TbBan,
   TbColorPicker,
+  TbExchange,
 } from "react-icons/tb";
 import domtoimage from "dom-to-image";
 
@@ -17,13 +18,17 @@ interface ToolsHeaderProps {
   setShowTextTools: React.Dispatch<React.SetStateAction<boolean>>;
   setFilter: React.Dispatch<React.SetStateAction<string | undefined>>;
   filter: string | undefined;
+  handleImageChange: any;
 }
 
 const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   showTextTools,
   setShowTextTools,
   setFilter,
+  handleImageChange,
 }) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const applyFilterAndDownload = () => {
     setShowTextTools(false);
     const divToConvert: any = document.getElementById("editedImageWrapper");
@@ -46,8 +51,14 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       });
   };
 
+  const handleClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen space-y-2 min-w-[120px] bg-[#fff8f6]">
+    <div className="flex flex-col items-center justify-center h-screen space-y-1 min-w-[120px] bg-[#fff8f6] overflow-auto">
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => setShowTextTools(!showTextTools)}
@@ -123,6 +134,20 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       >
         <TbBan size={40} color="black" className="icon p-2" />
         <div className="text-black text-[10px]">Remove Filter</div>
+      </div>
+      <div
+        className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
+        onClick={handleClick}
+      >
+        <TbExchange size={40} color="black" className="icon p-2" />
+        <div className="text-black text-[10px]">Change Image</div>
+        <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={handleImageChange}
+          className="hidden"
+        />
       </div>
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
