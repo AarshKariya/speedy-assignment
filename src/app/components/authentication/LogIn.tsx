@@ -49,7 +49,7 @@ const LogIn: FunctionComponent<LogInProps> = ({
           Login
         </button>
         <button
-          className="py-2 px-4 bg-gradient-to-b from-[#fe5829] to-[#fff8f6] border border-gray-300 rounded cursor-pointer mt-3 transition duration-300 text-white hover:text-black"
+          className="py-2 px-4 bg-[#fff8f6] hover:bg-[#fe5829] border border-gray-300 rounded cursor-pointer mt-3 transition duration-300 text-black hover:text-white"
           onClick={handleShowSignUp}
         >
           New User? Sign-Up!
