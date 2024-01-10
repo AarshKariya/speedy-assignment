@@ -34,3 +34,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Demo
+
+You can check the website out at [Speedy Assignment](https://659e97bb89a086ed72d9b47e--ubiquitous-otter-938a90.netlify.app/)
+
+## Steps
+
+You will land on the authentication page. You can either sign-in or sign-up.
+
+Since it's a mock authentication, the credentials for login have been set as follows:
+
+Log-in page credentials:
+
+- Username: demo
+- Password: demo123
+
+Notes:
+
+- For sign-up page, any credentials will work.
+- Once logged in you will be redirected to image upload page.
+- Username is validated for special characters. You can use alphanumeric characters.
+
+## What is different this time?
+
+- Fresh design (inspired by Speedy!!)
+
+- Extra Features:
+  - Want to have both blur and sepia? No worries, it is handled.
+  - Need only 5px blur effect as opposed to the default value set previously? That's handled as well!
+  - Change image directly from the toolbar!
