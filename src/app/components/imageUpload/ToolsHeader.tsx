@@ -25,7 +25,8 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   setFilter,
 }) => {
   const applyFilterAndDownload = () => {
-    const divToConvert: any = document.getElementById("editedImageDiv");
+    setShowTextTools(false);
+    const divToConvert: any = document.getElementById("editedImageWrapper");
 
     // Use dom-to-image to capture the div content as an image
     domtoimage
@@ -63,7 +64,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          // setTheme("light-theme");
           setFilter("light-theme");
         }}
       >
@@ -73,7 +73,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          // setTheme("dark-theme");
           setFilter("dark-theme");
         }}
       >
@@ -93,7 +92,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
           setFilter("dark-grayscale");
-          // setTheme(undefined);
         }}
       >
         <TbColorFilter size={40} color="black" className="icon p-2" />
@@ -103,7 +101,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
           setFilter("dark-blur");
-          // setTheme(undefined);
         }}
       >
         <TbBlur size={40} color="black" className="icon p-2" />
@@ -113,7 +110,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
           setFilter("light-sepia");
-          // setTheme(undefined);
         }}
       >
         <TbColorPicker size={40} color="black" className="icon p-2" />
@@ -123,7 +119,6 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
           setFilter(undefined);
-          // setTheme(undefined);
         }}
       >
         <TbBan size={40} color="black" className="icon p-2" />
@@ -131,10 +126,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       </div>
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
-        // onClick={() => (filter ? applyFilterAndDownload() : handleDownload())}
         onClick={() => applyFilterAndDownload()}
-        // onClick={() => handleDownload()}
-        // onClick={() => htmlDownload()}
       >
         <TbDownload size={40} color="black" className="icon p-2" />
         <div className="text-black text-[10px]">Download Image</div>

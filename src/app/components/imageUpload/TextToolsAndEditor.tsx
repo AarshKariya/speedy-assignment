@@ -40,7 +40,7 @@ const TextToolsAndEditor: React.FC<TextToolsAndEditorProps> = ({ show }) => {
               />
             </div>
           </Draggable>
-          <div className="absolute cursor-move top-5 left-1/10 z-10">
+          <div className="fixed cursor-move top-5 left-[140px] z-10">
             <div className="mb-3">
               <label className="block text-black">
                 Font Size: {fontSize}px

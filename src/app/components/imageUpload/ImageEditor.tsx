@@ -22,15 +22,20 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
         filter={filter}
       />
       {selectedImage && (
-        <div className="flex w-full h-full max-w-screen-lg p-1 rounded-lg inset-0">
-          <div id="editedImageDiv">
-            <TextToolsAndEditor show={showTextTools} />
-            <img
-              src={selectedImage.imageUrl}
-              alt="Selected"
-              className={`w-full max-h-96 ${getFilter(filter)}`}
-              id={"editedImage"}
-            />
+        <div
+          className="flex justify-center items-center min-h-screen w-full"
+          id="editedImageDiv"
+        >
+          <div className="flex justify-center w-full max-w-screen-lg">
+            <div className="w-fit h-96 relative" id="editedImageWrapper">
+              <TextToolsAndEditor show={showTextTools} />
+              <img
+                src={selectedImage.imageUrl}
+                alt="Selected"
+                className={`w-full h-full object-contain ${getFilter(filter)}`}
+                id="editedImage"
+              />
+            </div>
           </div>
         </div>
       )}
