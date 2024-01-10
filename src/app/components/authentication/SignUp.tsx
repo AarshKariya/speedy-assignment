@@ -69,7 +69,6 @@ const SignUp: FunctionComponent<SignUpProps> = ({
         <button
           type="submit"
           className="py-2 px-4 bg-[#fe5829] text-white rounded cursor-pointer transition duration-300 hover:bg-[#fe5829]"
-          onClick={handleSignup}
         >
           Sign-Up!
         </button>
