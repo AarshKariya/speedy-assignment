@@ -13,15 +13,27 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
   handleImageChange,
 }) => {
   const [showTextTools, setShowTextTools] = useState<boolean>(false);
-  const [filter, setFilter] = useState<string | undefined>();
+  const [filter, setFilter] = useState<string[]>([]);
+
+  const toggleFilter = (filterName: string) => {
+    const index = filter.indexOf(filterName);
+    if (index !== -1) {
+      const updatedFilters = [...filter];
+      updatedFilters.splice(index, 1);
+      setFilter(updatedFilters);
+    } else if (filterName === "clearAll") {
+      setFilter([]);
+    } else {
+      setFilter([...filter, filterName]);
+    }
+  };
 
   return (
     <div className="flex h-screen bg-[#f9fafb]">
       <ToolsHeader
         showTextTools={showTextTools}
         setShowTextTools={setShowTextTools}
-        setFilter={setFilter}
-        filter={filter}
+        toggleFilter={toggleFilter}
         handleImageChange={handleImageChange}
       />
       {selectedImage && (
@@ -35,7 +47,9 @@ const ImageEditor: FunctionComponent<ImageEditorProps> = ({
               <img
                 src={selectedImage.imageUrl}
                 alt="Selected"
-                className={`w-full h-full object-contain ${getFilter(filter)}`}
+                className={`w-full h-full object-contain ${getFilter(
+                  filter
+                ).join(" ")}`}
                 id="editedImage"
               />
             </div>

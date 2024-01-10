@@ -16,16 +16,15 @@ import domtoimage from "dom-to-image";
 interface ToolsHeaderProps {
   showTextTools: boolean;
   setShowTextTools: React.Dispatch<React.SetStateAction<boolean>>;
-  setFilter: React.Dispatch<React.SetStateAction<string | undefined>>;
-  filter: string | undefined;
+  toggleFilter: (filterName: string) => void;
   handleImageChange: any;
 }
 
 const ToolsHeader: React.FC<ToolsHeaderProps> = ({
   showTextTools,
   setShowTextTools,
-  setFilter,
   handleImageChange,
+  toggleFilter,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -75,7 +74,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("light-theme");
+          toggleFilter("light-theme");
         }}
       >
         <TbSunHigh size={40} color="black" className="icon p-2" />
@@ -84,7 +83,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("dark-theme");
+          toggleFilter("dark-theme");
         }}
       >
         <TbMoonFilled size={40} color="black" className="icon p-2" />
@@ -93,7 +92,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("saturate");
+          toggleFilter("saturate");
         }}
       >
         <TbBorderSides size={40} color="black" className="icon p-2" />
@@ -102,7 +101,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("dark-grayscale");
+          toggleFilter("dark-grayscale");
         }}
       >
         <TbColorFilter size={40} color="black" className="icon p-2" />
@@ -111,7 +110,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("dark-blur");
+          toggleFilter("dark-blur");
         }}
       >
         <TbBlur size={40} color="black" className="icon p-2" />
@@ -120,7 +119,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter("light-sepia");
+          toggleFilter("light-sepia");
         }}
       >
         <TbColorPicker size={40} color="black" className="icon p-2" />
@@ -129,7 +128,7 @@ const ToolsHeader: React.FC<ToolsHeaderProps> = ({
       <div
         className="icon-container flex flex-col items-center justify-center hover:bg-[#fe5829] rounded-md p-2 cursor-pointer"
         onClick={() => {
-          setFilter(undefined);
+          toggleFilter("clearAll");
         }}
       >
         <TbBan size={40} color="black" className="icon p-2" />
